@@ -113,13 +113,13 @@ function renderJobs(jobs) {
           <span>Copies</span>
           <button
             type="button"
-            class="dec bg-secondary-btn text-text rounded-lg px-2.5 py-1.5 cursor-pointer"
+            class="dec tap-no-zoom bg-secondary-btn text-text rounded-lg px-2.5 py-1.5 cursor-pointer"
             aria-label="Fewer copies"
           >&minus;</button>
           <span class="num min-w-9 text-center font-bold text-text text-[1.1rem]">${job.copies_default}</span>
           <button
             type="button"
-            class="inc bg-secondary-btn text-text rounded-lg px-2.5 py-1.5 cursor-pointer"
+            class="inc tap-no-zoom bg-secondary-btn text-text rounded-lg px-2.5 py-1.5 cursor-pointer"
             aria-label="More copies"
           >+</button>
         </div>

@@ -22,4 +22,7 @@
   button:disabled {
     @apply opacity-[0.55] cursor-not-allowed;
   }
+  .tap-no-zoom {
+    touch-action: manipulation;
+  }
 }
