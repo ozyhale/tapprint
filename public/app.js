@@ -97,7 +97,13 @@ function renderJobs(jobs) {
   for (let i = 0; i < jobs.length; i += 1) {
     const job = jobs[i];
     const card = el(`
-      <article class="bg-card border border-border rounded-xl p-5 mb-4" data-job-id="${job.id}">
+      <article class="relative bg-card border border-border rounded-xl p-5 pr-12 mb-4" data-job-id="${job.id}">
+        <button
+          type="button"
+          class="del absolute top-2 right-2 w-8 h-8 rounded-md text-muted transition-colors cursor-pointer"
+          aria-label="Delete file"
+          title="Delete file"
+        >&times;</button>
         <div class="font-semibold break-all mb-3">${escapeHtml(job.filename)}</div>
         <div class="text-[0.82rem] text-muted -mt-1.5 mb-2.5">
           ${job.created_at ? escapeHtml(new Date(job.created_at).toLocaleString()) : ''}
@@ -126,12 +132,6 @@ function renderJobs(jobs) {
             type="button"
             class="print-color bg-secondary-btn text-text rounded-[10px] px-3.5 py-2.5 cursor-pointer"
           >Print to Colored</button>
-        </div>
-        <div class="mt-2.5">
-          <button
-            type="button"
-            class="del w-full bg-danger/20 text-danger border border-danger/40 rounded-[10px] px-3.5 py-2.5 cursor-pointer"
-          >Delete the file</button>
         </div>
       </article>
     `);
