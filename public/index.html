@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TapPrint</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>TapPrint</h1>
+        <div class="sub">Email PDF queue</div>
+      </div>
+      <div class="toolbar" id="toolbar" hidden>
+        <button type="button" class="secondary small-btn" id="logoutBtn">Log out</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="loginSection" class="panel">
+        <label for="pinInput">Operator PIN</label>
+        <div class="pin-row">
+          <input id="pinInput" type="password" inputmode="numeric" autocomplete="current-password" placeholder="Enter PIN" />
+          <button type="button" class="primary" id="loginBtn">Unlock</button>
+        </div>
+        <div class="err" id="loginErr" hidden></div>
+      </section>
+
+      <section id="jobsSection" hidden>
+        <div id="jobsList"></div>
+        <div class="empty" id="emptyState" hidden>No print jobs. Waiting for new emails.</div>
+      </section>
+    </main>
+
+    <div class="modal-backdrop" id="confirmModal" aria-hidden="true">
+      <div class="modal">
+        <h2>Remove from list?</h2>
+        <p style="margin: 0; color: var(--muted); font-size: 0.95rem">The PDF file will be deleted.</p>
+        <div class="row">
+          <button type="button" class="secondary" id="confirmCancel">Cancel</button>
+          <button type="button" class="danger" id="confirmOk">Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

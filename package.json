@@ -1,0 +1,21 @@
+{
+  "name": "tapprint",
+  "version": "1.0.0",
+  "description": "TapPrint: email PDF queue and Windows printing",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "check-print": "node scripts/check-print-setup.js",
+    "oauth-google": "node scripts/google-oauth-token.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.6.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "express-session": "^1.18.1",
+    "googleapis": "^144.0.0"
+  }
+}
