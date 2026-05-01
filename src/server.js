@@ -115,7 +115,7 @@ function main() {
     const rows = db
       .prepare(
         `SELECT id, original_filename AS filename, copies AS copies_default, created_at, sender_email
-         FROM jobs WHERE status = 'pending' ORDER BY created_at ASC`
+         FROM jobs WHERE status = 'pending' ORDER BY created_at DESC`
       )
       .all();
     res.json({ jobs: rows });

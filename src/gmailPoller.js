@@ -144,7 +144,7 @@ function createPoller({ db, config, log }) {
           gmail_message_id: messageId,
           gmail_attachment_id: part.attachmentId,
           sender_email: sender,
-          copies: 2,
+          copies: 1,
         });
         log.info(`Queued job ${id} (${safeName})`);
       } catch (e) {

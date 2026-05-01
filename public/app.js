@@ -130,7 +130,7 @@ function renderJobs(jobs) {
           >Print to Black</button>
           <button
             type="button"
-            class="print-color bg-secondary-btn text-text rounded-[10px] px-3.5 py-2.5 cursor-pointer"
+            class="print-color bg-primary-btn text-text rounded-[10px] px-3.5 py-2.5 cursor-pointer"
           >Print to Colored</button>
         </div>
       </article>
