@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0f1419;
+  --color-card: #1a2332;
+  --color-text: #e8eef7;
+  --color-muted: #9fb0c9;
+  --color-accent: #3d9cfe;
+  --color-danger: #f07178;
+  --color-success: #7fdc8f;
+  --color-border: #2a3648;
+  --color-input-bg: #121923;
+  --color-secondary-btn: #263042;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-bg text-text font-sans min-h-screen leading-snug;
+  }
+  button:disabled {
+    @apply opacity-[0.55] cursor-not-allowed;
+  }
+}

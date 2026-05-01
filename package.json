@@ -5,6 +5,9 @@
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
+    "prestart": "npm run build:css",
+    "build:css": "tailwindcss -i ./src/styles/input.css -o ./public/tailwind.css --minify",
+    "watch:css": "tailwindcss -i ./src/styles/input.css -o ./public/tailwind.css --watch",
     "check-print": "node scripts/check-print-setup.js",
     "oauth-google": "node scripts/google-oauth-token.js"
   },
@@ -17,5 +20,9 @@
     "express": "^4.21.1",
     "express-session": "^1.18.1",
     "googleapis": "^144.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.0.0",
+    "tailwindcss": "^4.0.0"
   }
 }

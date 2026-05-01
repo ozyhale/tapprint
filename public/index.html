@@ -4,42 +4,79 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>TapPrint</title>
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/tailwind.css" />
   </head>
   <body>
-    <header>
+    <header class="flex items-center justify-between gap-4 px-5 py-4 border-b border-border">
       <div>
-        <h1>TapPrint</h1>
-        <div class="sub">Email PDF queue</div>
+        <h1 class="m-0 text-[1.35rem] tracking-tight">TapPrint</h1>
+        <div class="text-sm text-muted">Email PDF queue</div>
       </div>
-      <div class="toolbar" id="toolbar" hidden>
-        <button type="button" class="secondary small-btn" id="logoutBtn">Log out</button>
+      <div class="flex items-center gap-2" id="toolbar" hidden>
+        <button
+          type="button"
+          id="logoutBtn"
+          class="bg-secondary-btn text-text rounded-lg px-2.5 py-1.5 cursor-pointer"
+        >
+          Log out
+        </button>
       </div>
     </header>
 
-    <main>
-      <section id="loginSection" class="panel">
-        <label for="pinInput">Operator PIN</label>
-        <div class="pin-row">
-          <input id="pinInput" type="password" inputmode="numeric" autocomplete="current-password" placeholder="Enter PIN" />
-          <button type="button" class="primary" id="loginBtn">Unlock</button>
+    <main class="p-4 max-w-130 mx-auto">
+      <section id="loginSection" class="bg-card border border-border rounded-xl p-5 mb-4">
+        <label for="pinInput" class="block text-sm text-muted mb-1.5">Operator PIN</label>
+        <div class="flex gap-2">
+          <input
+            id="pinInput"
+            type="password"
+            inputmode="numeric"
+            autocomplete="current-password"
+            placeholder="Enter PIN"
+            class="flex-1 px-3 py-2.5 rounded-lg border border-border bg-input-bg text-text text-base"
+          />
+          <button
+            type="button"
+            id="loginBtn"
+            class="bg-accent text-[#051018] font-semibold rounded-[10px] px-3.5 py-2.5 cursor-pointer"
+          >
+            Unlock
+          </button>
         </div>
-        <div class="err" id="loginErr" hidden></div>
+        <div class="text-danger text-sm mt-2" id="loginErr" hidden></div>
       </section>
 
       <section id="jobsSection" hidden>
         <div id="jobsList"></div>
-        <div class="empty" id="emptyState" hidden>No print jobs. Waiting for new emails.</div>
+        <div class="text-center text-muted py-8 px-4" id="emptyState" hidden>
+          No print jobs. Waiting for new emails.
+        </div>
       </section>
     </main>
 
-    <div class="modal-backdrop" id="confirmModal" aria-hidden="true">
-      <div class="modal">
-        <h2>Remove from list?</h2>
-        <p style="margin: 0; color: var(--muted); font-size: 0.95rem">The PDF file will be deleted.</p>
-        <div class="row">
-          <button type="button" class="secondary" id="confirmCancel">Cancel</button>
-          <button type="button" class="danger" id="confirmOk">Delete</button>
+    <div
+      id="confirmModal"
+      class="hidden fixed inset-0 bg-black/55 items-center justify-center p-4"
+      aria-hidden="true"
+    >
+      <div class="bg-card border border-border rounded-xl p-4 w-full max-w-sm">
+        <h2 class="m-0 mb-2 text-[1.05rem]">Remove from list?</h2>
+        <p class="m-0 text-muted text-[0.95rem]">The PDF file will be deleted.</p>
+        <div class="flex gap-2 justify-end mt-4">
+          <button
+            type="button"
+            id="confirmCancel"
+            class="bg-secondary-btn text-text rounded-[10px] px-3.5 py-2.5 cursor-pointer"
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            id="confirmOk"
+            class="bg-danger/20 text-danger border border-danger/40 rounded-[10px] px-3.5 py-2.5 cursor-pointer"
+          >
+            Delete
+          </button>
         </div>
       </div>
     </div>

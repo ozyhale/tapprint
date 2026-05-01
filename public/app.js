@@ -97,24 +97,41 @@ function renderJobs(jobs) {
   for (let i = 0; i < jobs.length; i += 1) {
     const job = jobs[i];
     const card = el(`
-      <article class="panel" data-job-id="${job.id}">
-        <div class="job-title">${escapeHtml(job.filename)}</div>
-        <div class="job-meta" style="font-size:0.82rem;color:var(--muted);margin:-0.35rem 0 0.65rem">
+      <article class="bg-card border border-border rounded-xl p-5 mb-4" data-job-id="${job.id}">
+        <div class="font-semibold break-all mb-3">${escapeHtml(job.filename)}</div>
+        <div class="text-[0.82rem] text-muted -mt-1.5 mb-2.5">
           ${job.created_at ? escapeHtml(new Date(job.created_at).toLocaleString()) : ''}
           ${job.sender_email ? ` &middot; ${escapeHtml(job.sender_email)}` : ''}
         </div>
-        <div class="copies">
+        <div class="flex items-center gap-3 mb-4 text-muted text-[0.95rem]">
           <span>Copies</span>
-          <button type="button" class="secondary small-btn dec" aria-label="Fewer copies">&minus;</button>
-          <span class="num">${job.copies_default}</span>
-          <button type="button" class="secondary small-btn inc" aria-label="More copies">+</button>
+          <button
+            type="button"
+            class="dec bg-secondary-btn text-text rounded-lg px-2.5 py-1.5 cursor-pointer"
+            aria-label="Fewer copies"
+          >&minus;</button>
+          <span class="num min-w-9 text-center font-bold text-text text-[1.1rem]">${job.copies_default}</span>
+          <button
+            type="button"
+            class="inc bg-secondary-btn text-text rounded-lg px-2.5 py-1.5 cursor-pointer"
+            aria-label="More copies"
+          >+</button>
         </div>
-        <div class="actions">
-          <button type="button" class="secondary print-bw">Print to Black</button>
-          <button type="button" class="secondary print-color">Print to Colored</button>
+        <div class="grid grid-cols-2 gap-2">
+          <button
+            type="button"
+            class="print-bw bg-secondary-btn text-text rounded-[10px] px-3.5 py-2.5 cursor-pointer"
+          >Print to Black</button>
+          <button
+            type="button"
+            class="print-color bg-secondary-btn text-text rounded-[10px] px-3.5 py-2.5 cursor-pointer"
+          >Print to Colored</button>
         </div>
-        <div class="actions-full">
-          <button type="button" class="danger del" style="width:100%">Delete the file</button>
+        <div class="mt-2.5">
+          <button
+            type="button"
+            class="del w-full bg-danger/20 text-danger border border-danger/40 rounded-[10px] px-3.5 py-2.5 cursor-pointer"
+          >Delete the file</button>
         </div>
       </article>
     `);
@@ -177,7 +194,9 @@ function renderJobs(jobs) {
 
     card.querySelector('.del').addEventListener('click', () => {
       deleteTargetId = job.id;
-      document.getElementById('confirmModal').classList.add('show');
+      const modal = document.getElementById('confirmModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
     });
 
     jobsList.appendChild(card);
@@ -214,14 +233,20 @@ document.getElementById('logoutBtn').addEventListener('click', async () => {
   showLogin();
 });
 
+function closeConfirmModal() {
+  const modal = document.getElementById('confirmModal');
+  modal.classList.add('hidden');
+  modal.classList.remove('flex');
+}
+
 document.getElementById('confirmCancel').addEventListener('click', () => {
   deleteTargetId = null;
-  document.getElementById('confirmModal').classList.remove('show');
+  closeConfirmModal();
 });
 
 document.getElementById('confirmOk').addEventListener('click', async () => {
   const id = deleteTargetId;
-  document.getElementById('confirmModal').classList.remove('show');
+  closeConfirmModal();
   deleteTargetId = null;
   if (!id) return;
   try {
